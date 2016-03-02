@@ -1,0 +1,9 @@
+{
+  "cmd": "php phar-composer.phar build",
+  "name": "Command Line",
+  "sh": true,
+  "cwd": "{PROJECT_PATH}",
+  "errorMatch": [
+    "^PHP Fatal error: $"
+  ]
+}

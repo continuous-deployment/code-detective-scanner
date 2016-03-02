@@ -1,0 +1,21 @@
+{
+    "name": "continous-deployment/code-detective-scanner",
+    "description": "Scanner for code detective",
+    "type": "CLI tool",
+    "require": {
+        "symfony/process": "^3.0",
+        "symfony/console": "^3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "CodeDetective": "src/"
+        }
+    },
+    "bin": ["bin/codedetective"],
+    "authors": [
+        {
+            "name": "Chris Normansell",
+            "email": "chris.normansell@gmail.com"
+        }
+    ]
+}
