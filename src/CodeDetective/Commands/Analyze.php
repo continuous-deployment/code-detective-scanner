@@ -57,9 +57,27 @@ class Analyze extends BaseCodeClimate
         }
 
         $jsonAnalysis = $outputProcess->getOutput();
+        $decoded = json_decode($jsonAnalysis);
+
+        if ($decoded === null) {
+            $output->writeln(
+                '<error>Unable to parse the output from codeclimte. ' .
+                'Saved output to codeclimate-output.json</error>'
+            );
+
+            if ($output->isVerbose()) {
+                $output->writeln('<info>' . $jsonAnalysis . '</info>');
+            }
+
+            file_put_contents(
+                $input->getOption('directory') . '/codeclimate-output.json',
+                $jsonAnalysis
+            );
+            return 1;
+        }
 
         $formatter = new AnalysisFormatter();
-        $formatter->setIssues(json_decode($jsonAnalysis));
+        $formatter->setIssues($decoded);
         $textAnalysis = $formatter->getTextOutput();
 
         $output->writeln($textAnalysis);
